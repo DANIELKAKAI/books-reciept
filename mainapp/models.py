@@ -23,8 +23,14 @@ class Rent(models.Model):
     def calculate_cost(self):
         if self.book.kind == 'fiction':
             self.charges = self.days * 3
-        else:
-            self.charges = self.days * 1.5
+        elif self.book.kind == 'regular':
+            self.charges = 2
+            if self.days > 2:
+                self.charges += (self.days-2)*1.5
+        elif self.book.kind == 'novel':
+            self.charges = 4.5
+            if self.days > 3:
+                self.charges += (self.days-3)*1.5
         return self.charges
     def __str__(self):
         return self.book.name +'--'+str(self.charges)
