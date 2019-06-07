@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  web:
+    container_name: django-app
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/django-docker
+    restart: always
+    ports:
+      - "8080:8000"
