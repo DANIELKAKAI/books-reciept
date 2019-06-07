@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from .models import Book,Rent
 
 # request test
 class AppTest(TestCase):
