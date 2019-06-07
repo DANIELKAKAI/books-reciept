@@ -24,65 +24,75 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label >Book name</label>
-                    <input name="name" type="text" class="form-control" required >
+                    <label>Book name</label>
+
+                    <input name="name" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label >Days</label>
-                    <input name="days" type="number" class="form-control" required >
+                    <label>Book kind:</label>
+                    <select name="kind" class="form-control" required>
+                        <option value="regular">Regular</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="novel" >Novel</option>
+
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label>Days</label>
+                    <input name="days" type="number" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                     <button type="submit" class="btn btn-primary">Rent</button>
+                    <button type="submit" class="btn btn-primary">Rent</button>
                 </div>
 
 
             </form>
 
         </div>
-</div>
     </div>
+</div>
 
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Book</th>
-        <th>Days</th>
-        <th>cost</th>
-      </tr>
-    </thead>
-    <tbody>
+                <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>kind</th>
+                    <th>Days</th>
+                    <th>cost</th>
+                </tr>
+                </thead>
+                <tbody>
 
 
+                {% for rent in rented %}
+                <tr>
+                    <td>{{rent.book.name}}</td>
+                    <td>{{rent.book.kind}}</td>
+                    <td>{{rent.days}}</td>
+                    <td>{{rent.charges}}</td>
+                </tr>
 
-    {% for rent in rented %}
-      <tr>
-        <td>{{rent.book.name}}</td>
-        <td>{{rent.days}}</td>
-        <td>{{rent.charges}}</td>
-      </tr>
+                {% endfor %}
+                <tr>
+                    <td>TOTAL</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>{{total}}</td>
+                </tr>
 
-    {% endfor %}
-     <tr>
-        <td>TOTAL</td>
-        <td>-</td>
-        <td>{{total}}</td>
-      </tr>
-
-    </tbody>
-  </table>
+                </tbody>
+            </table>
 
         </div>
 
     </div>
 </div>
-
-
-
 
 
 </body>
